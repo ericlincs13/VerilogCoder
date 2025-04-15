@@ -7,6 +7,7 @@
 import re
 from autogen.agentchat.chat import ChatResult
 
+
 def extract_verilog_code_blocks(text):
     """
     Extracts code blocks enclosed between triple backticks (```) from the given text.
@@ -37,11 +38,18 @@ def verilog_output_parse(response: ChatResult) -> str:
             return result
     return response.summary
 
+
 def validate_correct_parse(response: ChatResult) -> str:
 
     print("Validating correct parse")
-    for k in reversed(range(len(response.chat_history))):
-        chat = response.chat_history[k]
-        if "[Compiled Success]" in chat['content'] and "[Function Check Success]" in chat['content']:
-            return "Pass"
-    return "Failed"
+    try:
+        for k in reversed(range(len(response.chat_history))):
+            content = response.chat_history[k]['content']
+            if not content:
+                continue
+            if "[Compiled Success]" in content and "[Function Check Success]" in content:
+                return "Pass"
+        return "Failed"
+    except Exception as e:
+        print(f"Error in validate_correct_parse: {e}")
+        return "Failed"
