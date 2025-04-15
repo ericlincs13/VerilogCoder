@@ -23,6 +23,7 @@ ENV PATH=/opt/conda/bin:$PATH
 RUN conda create -n hardware_agent python=3.10.13 && \
     echo "source activate hardware_agent" > ~/.bashrc && \
     /bin/bash -c "source ~/.bashrc && conda activate hardware_agent && \
+    pip install -e . && \
     pip install -r requirements.txt"
 
 # Set environment variables
