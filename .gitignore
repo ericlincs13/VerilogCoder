@@ -225,3 +225,5 @@ hardware_agent/examples/fv_backup/hardware_agent/examples/fv/
 hardware_agent/examples/fv/
 hardware_agent/examples/fv_backup/
 hardware_agent/examples/fv_backup/autogen/oai/client_with_secrets.py
+
+artifacts/
