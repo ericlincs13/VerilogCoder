@@ -17,18 +17,21 @@ RUN git clone https://github.com/steveicarus/iverilog.git && cd iverilog \
     && sh ./autoconf.sh && ./configure --prefix=/usr/local && make -j4 && make install
 
 # Set environment variables
-ENV PATH=/usr/local
+ENV PATH=/opt/conda/bin:$PATH
 
 # Create conda environment
 RUN conda create -n hardware_agent python=3.10.13 && \
     echo "source activate hardware_agent" > ~/.bashrc && \
-    /bin/bash -c "source ~/.bashrc && conda activate hardware_agent"
-
-# install dependencies
-RUN /bin/bash -c "pip install -e . && pip install pypdf PILLOW network matplotlib pydantic==2.10.1 \
-    langchain==0.3.14 langchain_openai==0.2.14 langchain_community==0.3.14 \
-    chromadb==0.4.24 IPython markdownify sentence_transformers==2.7.0 \
-    chainlit"
+    /bin/bash -c "source ~/.bashrc && conda activate hardware_agent && \
+    pip install -r requirements.txt"
 
 # Set environment variables
 ENV PYTHONPATH=/app
+
+CMD ["/bin/bash", "-c",\
+    "python                 hardware_agent/examples/VerilogCoder/run_verilog_coder.py \
+    --generate_plan_dir     artifacts/plans/ \
+    --generate_verilog_dir  artifacts/generate_verilog/ \
+    --verilog_tmp_dir       artifacts/verilog_tmp_dir/ \
+    --verilog_example_dir   hardware_agent/examples/VerilogCoder/verilog-eval-v2/dataset_dumpall/ \
+    > artifacts/logs/output.log 2>&1"]
