@@ -48,7 +48,8 @@ else:
 # Add questions
 # user_task_ids = {'vector4', 'zero'}
 with open(args.verilog_example_dir + "/problems.txt", "r") as f:
-    user_task_ids = set([line.strip() for line in f.readlines()])
+    user_task_ids = set(
+        ['_'.join(line.strip().split('_')[1:]) for line in f.readlines()])
 case_manager = VerilogCaseManager(file_path=args.verilog_example_dir,
                                   task_ids=user_task_ids)
 
