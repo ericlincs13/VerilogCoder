@@ -26,12 +26,10 @@ RUN conda create -n hardware_agent python=3.10.13 && \
     pip install -e . && \
     pip install -r requirements.txt"
 
+RUN mkdir -p artifacts/logs && \
+    mkdir -p artifacts/plans && \
+    mkdir -p artifacts/generate_verilog && \
+    mkdir -p artifacts/verilog_tmp_dir
+
 # Set environment variables
 ENV PYTHONPATH=/app
-
-CMD ["python",                  "hardware_agent/examples/VerilogCoder/run_verilog_coder.py", \
-    "--generate_plan_dir",      "artifacts/plans/", \
-    "--generate_verilog_dir",   "artifacts/generate_verilog/", \
-    "--verilog_tmp_dir",        "artifacts/verilog_tmp_dir/", \
-    "--verilog_example_dir",    "hardware_agent/examples/VerilogCoder/verilog-eval-v2/dataset_dumpall/", \
-    ">",                        "artifacts/logs/benchmark_all.log"]

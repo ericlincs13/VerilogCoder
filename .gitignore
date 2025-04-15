@@ -174,9 +174,8 @@ test/my_tmp/*
 # Storage for the AgentEval output
 test/test_files/agenteval-in-out/out/
 
-# local cache or coding foler
+# local cache
 local_cache/
-coding/
 
 # Files created by tests
 *tmp_code_*
