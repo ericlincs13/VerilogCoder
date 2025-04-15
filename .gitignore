@@ -203,7 +203,6 @@ EMBED_CONFIG.json
 EMBED_CONFIG_local.json
 OAI_CONFIG_LIST_DAR
 .chainlit/
-autogen/oai/client.py
 kb_storage/hardware_agent/examples/fv/debug/data/cex-bench/uart_rx/temp_*
 hardware_agent/examples/fv/debug/data/cex-bench/uart_rx/temp_1736531546/
 kb_storage/
