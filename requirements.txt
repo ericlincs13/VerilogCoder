@@ -1,0 +1,16 @@
+pypdf
+PILLOW
+network
+matplotlib
+pydantic==2.10.1
+langchain==0.3.14
+langchain_openai==0.2.14
+langchain_community==0.3.14
+chromadb==0.4.24
+IPython
+markdownify
+sentence_transformers==2.7.0
+chainlit
+flaml[automl]
+vcdvcd
+ply 
