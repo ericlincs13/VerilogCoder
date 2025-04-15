@@ -65,7 +65,7 @@ export PYTHONPATH=<cur_dir_path>:$PYTHONPATH
 [
     {
         "model": "gpt-4-turbo",
-	"api_key": ""
+	    "api_key": ""
     }
 ]
 ```
