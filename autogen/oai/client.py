@@ -145,9 +145,6 @@ class OpenAIClient:
     ) -> Union[List[str], List[ChatCompletionMessage]]:
         """Retrieve the messages from the response."""
         choices = response.choices
-        if not choices:
-            return []
-
         if isinstance(response, Completion):
             return [choice.text
                     for choice in choices]  # type: ignore [union-attr]
