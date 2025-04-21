@@ -503,7 +503,7 @@ class OpenAIWrapper:
                 self._configure_azure_openai(config, openai_config)
                 client = AzureOpenAI(**openai_config)
                 self._clients.append(OpenAIClient(client))
-            elif api_type is not None and api_type.startswith("google"):
+            elif api_type is not None and api_type.startswith("google/gemini"):
                 if gemini_import_exception:
                     raise ImportError(
                         "Please install `google-generativeai` to use Google OpenAI API."
