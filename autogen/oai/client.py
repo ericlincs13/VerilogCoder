@@ -18,6 +18,7 @@ from autogen.runtime_logging import log_chat_completion, log_new_client, log_new
 from autogen.token_count_utils import count_token
 import re
 import requests
+from debug_logger import debug_logger
 
 TOOL_ENABLED = False
 try:
@@ -303,6 +304,7 @@ class OpenAIClient:
             # If streaming is not enabled, send a regular chat completion request
             params = params.copy()
             params["stream"] = False
+            debug_logger(params)
             response = completions.create(**params)
 
         return response
