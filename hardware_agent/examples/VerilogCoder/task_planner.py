@@ -267,7 +267,8 @@ class TaskPlanAgent:
             pattern = re.compile(r'```(.*?)```', re.DOTALL)
             json_blocks = pattern.findall(text)
         if len(json_blocks) == 0:
-            json_blocks = [text]
+            if '"subtasks"' in text:
+                json_blocks = [text]
 
         return json_blocks
 
@@ -295,6 +296,7 @@ class TaskPlanAgent:
             SubtaskExample=SUBTASK_FORMAT_EXAMPLE)
         # print("rough plan prompt: ", module_plan_prompt)
         rough_plan = self.plan_agent.initiate_chat(message=module_plan_prompt)
+        print(rough_plan)
         return json.loads(self.json_parser(rough_plan))
 
     def _extract_entity(self, module: str):
