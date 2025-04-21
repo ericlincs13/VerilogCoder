@@ -266,6 +266,8 @@ class TaskPlanAgent:
         if len(json_blocks) == 0:
             pattern = re.compile(r'```(.*?)```', re.DOTALL)
             json_blocks = pattern.findall(text)
+        if len(json_blocks) == 0:
+            json_blocks = [text]
 
         return json_blocks
 
@@ -291,16 +293,15 @@ class TaskPlanAgent:
             # VerilogExamples=SumOfProductToProductOfSumExample,
             VerilogExamples=GeneralExample,
             SubtaskExample=SUBTASK_FORMAT_EXAMPLE)
-        print("rough plan prompt: ", module_plan_prompt)
+        # print("rough plan prompt: ", module_plan_prompt)
         rough_plan = self.plan_agent.initiate_chat(message=module_plan_prompt)
-        print("[296] rough plan = ", rough_plan)
         return json.loads(self.json_parser(rough_plan))
 
     def _extract_entity(self, module: str):
         entity_extract_prompt = Verilog_Signal_Extract_Template_Prompt.format(
             ModulePrompt=module,
             SignalExtractRule=Verilog_signal_extraction_hint)
-        print("entity extraction prompt: ", entity_extract_prompt)
+        # print("entity extraction prompt: ", entity_extract_prompt)
         entities = self.entity_extraction_agent.initiate_chat(
             message=entity_extract_prompt)
         return json.loads(self.json_parser(entities))
@@ -312,7 +313,7 @@ class TaskPlanAgent:
         if 'subtasks' not in rough_plan.keys():
             print("[Error] Plan format error!\n", rough_plan)
             return
-        print('rough plan = ', rough_plan)
+        # print('rough plan = ', rough_plan)
         # Mark: Assign the task plan manually to follow the sequential for writing the same file
         for i in range(len(rough_plan['subtasks'])):
             if i < 1:
