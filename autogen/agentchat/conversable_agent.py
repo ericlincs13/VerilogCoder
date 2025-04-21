@@ -1470,7 +1470,7 @@ class ConversableAgent(LLMAgent):
         )
         # print('[_generate_oai_reply_from_client] context = ', messages[-1].pop("context", None), "\n messages = ", all_messages)
         extracted_response = next(
-            llm_client.extract_text_or_completion_object(response), None)
+            iter(llm_client.extract_text_or_completion_object(response)), None)
         # print('[_generate_oai_reply_from_client] response = ', response)
         if extracted_response is None:
             warnings.warn(f"Extracted_response from {response} is None.",

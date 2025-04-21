@@ -303,8 +303,8 @@ class OpenAIClient:
             # If streaming is not enabled, send a regular chat completion request
             params = params.copy()
             params["stream"] = False
-            print(">>>> params")
-            print(params)
+            print(">>>> params[messages]")
+            print(params["messages"])
             print("<<<<")
             response = completions.create(**params)
 
