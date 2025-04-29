@@ -2,6 +2,7 @@
 
 ### vector3 (64)
 
+分類：verilog - vectors
 任務：訊號變換
 
 [HDLBits](https://hdlbits.01xz.net/wiki/Vector3)
@@ -12,12 +13,14 @@
 
 [HDLBits](https://hdlbits.01xz.net/wiki/Exams/review2015_fancytimer)
 
+分類：circuits - build larger circuits
 任務：timer
 
 ![Exams_review2015_fancytimer](Exams_review2015_fancytimer.svg)
 
 ### review2015_fsmonehot (150)
 
+分類：circuits - build larger circuits
 任務：FSM
 
 [HDLBits](https://hdlbits.01xz.net/wiki/Exams/review2015_fsmonehot)
@@ -26,6 +29,7 @@
 
 ### review2015_fsm (151)
 
+分類：circuits - build larger circuits
 任務：FSM
 
 [HDLBits](https://hdlbits.01xz.net/wiki/Exams/review2015_fsm)
@@ -34,6 +38,7 @@
 
 ### kmap2 (57)
 
+分類：circuits - combinational logic - Kmap to circuit
 任務：解讀 Kmap
 
 [HDLBits](https://hdlbits.01xz.net/wiki/Kmap2)
@@ -42,6 +47,7 @@
 
 ### lfsr5 (86)
 
+分類：circuits - sequential logic - shift register
 任務：linear feedback shift register
 
 [HDLBits](https://hdlbits.01xz.net/wiki/Lfsr5)
@@ -50,6 +56,7 @@
 
 ### m2014_q6b (135)
 
+分類：circuits - sequential logic - FSM
 任務：FSM
 
 [HDLBits](https://hdlbits.01xz.net/wiki/Exams/m2014_q6b)
@@ -58,6 +65,7 @@
 
 ### fsm_ps2data (154)
 
+分類：circuits - sequential logic - FSM
 任務：FSM
 
 [HDLBits](https://hdlbits.01xz.net/wiki/Fsm_ps2data)
@@ -66,6 +74,7 @@
 
 ### lemmings2 (142)
 
+分類：circuits - sequential logic - FSM
 任務：FSM，多種輸入決定狀態
 
 [HDLBits](https://hdlbits.01xz.net/wiki/Lemmings2)
@@ -74,6 +83,7 @@
 
 ### edgecapture (66)
 
+分類：circuits - sequential logic - latches & flip-flops
 任務：辨認訊號變化瞬間
 
 [HDLBits](https://hdlbits.01xz.net/wiki/Edgecapture)
@@ -82,12 +92,15 @@
 
 ### ece241_2013_q4 (149)
 
+分類：circuits - sequential logic - FSM
+
 [HDLBits](https://hdlbits.01xz.net/wiki/Exams/ece241_2013_q4)
 
 ![Ece241_2013_q4](Ece241_2013_q4.png)
 
 ### kmap3 (125)
 
+分類：circuits - combinational logic - Kmap to circuit
 任務：解讀 Kmap
 
 [HDLBits](https://hdlbits.01xz.net/wiki/Kmap3)
@@ -96,6 +109,7 @@
 
 ### circuit10 (147)
 
+分類：verification(reading simulations) - build circuit from simulation waveform
 任務：sequential circuit
 
 [HDLBits](https://hdlbits.01xz.net/wiki/Sim/circuit10)
@@ -104,6 +118,7 @@
 
 ### lemmings4 (155)
 
+分類：circuits - sequential logic - FSM
 任務：FSM，多種輸入決定狀態
 
 [HDLBits](https://hdlbits.01xz.net/wiki/Lemmings4)
@@ -113,6 +128,7 @@
 
 ### ece241_2014_q3 (93)
 
+分類：circuits - combinational logic - Kmap to circuit
 任務：解讀 Kmap + MUX
 
 [HDLBits](https://hdlbits.01xz.net/wiki/Exams/ece241_2014_q3)
@@ -122,6 +138,7 @@
 
 ### countbcd (68)
 
+分類：circuits - sequential logic - counters
 任務：binary-coded decimal counter
 
 [HDLBits](https://hdlbits.01xz.net/wiki/Countbcd)
@@ -130,6 +147,8 @@
 
 ### gshare (153)
 
+分類：cs450
+
 [HDLBits](https://hdlbits.01xz.net/wiki/Cs450/gshare)
 
 ![gshare_1](gshare_1.png)
@@ -137,18 +156,21 @@
 
 ### lfsr32 (82)
 
+分類：circuits - sequential logic - shift register
 任務：32-bit Galois LFSR
 
 [HDLBits](https://hdlbits.01xz.net/wiki/Lfsr32)
 
 ### always_case2 (112)
 
+分類：verilog - procedures
 任務：priority encoder
 
 [HDLBits](https://hdlbits.01xz.net/wiki/Always_case2)
 
 ### 2012_q2b (91)
 
+分類：circuits - sequential logic - FSM
 任務：FSM
 
 [HDLBits](https://hdlbits.01xz.net/wiki/Exams/2012_q2b)
@@ -157,6 +179,7 @@
 
 ### ece241_2014_q5a (89)
 
+分類：circuits - sequential logic - FSM
 任務：Moore state machine
 
 [HDLBits](https://hdlbits.01xz.net/wiki/Exams/ece241_2014_q5a)
@@ -165,6 +188,7 @@
 
 ### fsm_serialdata (146)
 
+分類：circuits - sequential logic - FSM
 任務：FSM
 
 [HDLBits](https://hdlbits.01xz.net/wiki/Fsm_serialdata)
@@ -173,12 +197,14 @@
 
 ### 2013_q2bfsm (139)
 
+分類：circuits - sequential logic - FSM
 任務：FSM
 
 [HDLBits](https://hdlbits.01xz.net/wiki/Exams/2013_q2bfsm)
 
 ### fsm_serial (137)
 
+分類：circuits - sequential logic - FSM
 任務：FSM
 
 [HDLBits](https://hdlbits.01xz.net/wiki/Fsm_serial)
@@ -188,6 +214,7 @@
 
 ### rule110 (124)
 
+分類：circuits - sequential logic - more circuits
 任務：one-dimensional cellular automaton
 
 [HDLBits](https://hdlbits.01xz.net/wiki/Rule110)
@@ -205,14 +232,33 @@
 
 ### ece241_2013_q2 (70)
 
+分類：circuits - combinational logic - Kmap to circuit
 任務：single-output digital system
 
 [HDLBits](https://hdlbits.01xz.net/wiki/Exams/ece241_2013_q2)
 
 ### kmap4 (122)
 
+分類：circuits - combinational logic - Kmap to circuit
 任務：解讀 Kmap
 
 [HDLBits](https://hdlbits.01xz.net/wiki/Kmap4)
 
 ![Kmap4](Kmap4.png)
+
+## 統計表
+
+| 類別名 | 題數 |
+|---------------------------------------------|------|
+| verilog - vectors | 1 |
+| circuits - build larger circuits | 3 |
+| circuits - combinational logic - Kmap to circuit | 4 |
+| circuits - sequential logic - shift register| 2 |
+| circuits - sequential logic - FSM | 10 |
+| circuits - sequential logic - latches & flip-flops | 1 |
+| verification(reading simulations) - build circuit from simulation waveform | 1 |
+| circuits - sequential logic - counters | 1 |
+| circuits - sequential logic - more circuits | 1 |
+| verilog - procedures | 1 |
+| cs450 | 1 |
+
