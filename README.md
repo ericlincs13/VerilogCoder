@@ -125,3 +125,144 @@ Full text of the DCO:
   
   (d) I understand and agree that this project and the contribution are public and that a record of the contribution (including all personal information I submit with it, including my sign-off) is maintained indefinitely and may be redistributed consistent with this project or the open source license(s) involved.
 
+## 直接建置在本機
+
+1. clone VerilogCoder 專案
+
+    ```bash
+    $ git clone https://github.com/NVlabs/VerilogCoder.git
+    ```
+
+2. 前往 [iverilog 頁面](https://github.com/steveicarus/iverilog/releases) 下載 zip 或是 tar.gz
+3. 在 clone 下來的 VerilogCoder 內解壓縮 iverilog，使資料夾結構如下
+
+    ```yaml
+    VerilogCoder
+        |--iverilog
+    ```
+
+4. 確認本機的執行環境為 linux，或是使用 WSL
+5. 在 VerilogCoder/iverilog 中執行以下指令
+
+    ```bash
+    $ sudo apt-get update
+    $ sudo apt-get install -y autoconf gperf build-essential flex bison
+    $ sh ./autoconf.sh
+    $ ./configure
+    $ make
+    $ sudo make install
+    ```
+
+6. 若是 WSL 中沒有安裝 conda，執行以下指令安裝
+
+    ```bash
+    $ sudo apt-get install wget
+    $ wget https://repo.anaconda.com/archive/Anaconda3-2024.02-1-Linux-x86_64.sh
+    $ bash Anaconda3-2024.02-1-Linux-x86_64.sh
+    # 一直按 enter
+    # yes
+    # 按 enter 以安裝預設位置
+    # yes
+    $ source ~/.bashrc
+    ```
+
+7. 回到 VerilogCoder，建立 conda 環境，並安裝環境
+
+    ```bash
+    $ conda create -n hardware_agent python=3.10.13
+    $ pip install -e .
+    $ pip install -r requirements.txt
+    ```
+
+8. 建置完成
+
+## 建置在 docker / podman container 中
+
+1. clone VerilogCoder 專案
+
+    ```bash
+    $ git clone https://github.com/NVlabs/VerilogCoder.git
+    ```
+
+2. 在 VerilogCoder 中新增 Dockerfile 如下
+
+    ```docker
+    FROM continuumio/miniconda3
+
+    # Set up the working directory
+    WORKDIR /app
+
+    # Copy the current directory contents into the container at /app
+    COPY . /app
+
+    # Install necessary build tools and pip
+    RUN apt-get update && \
+        apt-get install -y git autoconf gperf build-essential flex bison && \
+        apt-get clean && \
+        rm -rf /var/lib/apt/lists/*
+
+    # Install prerequisite tools
+    RUN git clone https://github.com/steveicarus/iverilog.git && cd iverilog \
+        && sh ./autoconf.sh && ./configure --prefix=/usr/local && make -j4 && make install
+
+    # Set environment variables
+    ENV PATH=/opt/conda/bin:$PATH
+
+    # Create conda environment
+    RUN conda create -n hardware_agent python=3.10.13 && \
+        echo "source activate hardware_agent" > ~/.bashrc && \
+        /bin/bash -c "source ~/.bashrc && conda activate hardware_agent && \
+        pip install -e . && \
+        pip install -r requirements.txt"
+
+    # Set environment variables
+    ENV PYTHONPATH=/app
+    ```
+
+3. 以 docker 舉例，以 Dockerfile 建置 image 後執行
+
+    ```bash
+    # 建置 image，名字為 verilogcoder，避免 Dockerfile 被 cache 住
+    $ docker build -t verilogcoder . --no-cache
+    # 執行 container，執行結束後直接清除該 container
+    # 掛載外部的 artifacts 資料夾到內部的 /app/artifacts 資料夾
+    $ docker run -it --rm -v ./aritfacts/:/app/artifacts/ verilogcoder bash
+    ```
+
+4. 建置完成，可以在 container 中執行了
+
+## 執行 VerilogCoder
+
+在 VerilogCoder 資料夾中，執行以下指令
+
+```bash
+$ python ./hardware_agent/examples/VerilogCoder/run_verilog_coder.py \
+	--generate_plan_dir ./artifacts_test/plans/ \ # 指定生成 plan 的資料夾路徑
+	--generate_verilog_dir ./artifacts_test/generate_verilog/ \ # 指定生成完成的 verilog 資料夾路徑
+	--verilog_tmp_dir ./artifacts_test/verilog_tmp_dir/ \ # 指定 agent 生成暫存檔的資料夾路徑
+	--verilog_example_dir ./hardware_agent/examples/VerilogCoder/verilog-eval-v2/dataset_dumpall/ # 指定測資所在的資料夾
+	> ./artifacts_test/log # 將輸出導至 log 檔
+```
+
+使用模型設定
+
+```json
+// VerilogCoder/OAI_CONFIG_LIST
+[
+	{
+		"model": "gpt-4o", // 模型名稱
+		"base_url": "https://api.openai.com/v1", // 模型 api url
+		"api_key": "sk-xxxxxxxxxxxxxxxxxxxxx", // 就算因為是 sk-proj 導致跳出警告，還是能執行的
+	}
+]
+```
+
+設定要測試的問題集
+
+```python
+# VerilogCoder/hardware_agent/examples/VerilogCoder/run_verilog_coder.py, line 41
+user_task_ids = {'zero'} # 可在這邊設定要使用的 testcase
+
+# 可以在 VerilogCoder/hardware_agent/examples/VerilogCoder/verilog-eval-v2/dataset_dumpall/problems.txt
+# 查看 testcase 有哪些
+```
